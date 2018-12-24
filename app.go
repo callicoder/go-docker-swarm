@@ -47,9 +47,14 @@ func quoteOfTheDayHandler(client *redis.Client) http.HandlerFunc {
 
 func main() {
 	// Create Redis Client
+	redisUrl := getEnv("REDIS_URL", "localhost:6379")
+	redisPwd := getEnv("REDIS_PASSWORD", "")
+
+	log.Printf("Connecting to Redis Url %s\n", redisUrl)
+
 	client := redis.NewClient(&redis.Options{
-		Addr:     getEnv("REDIS_URL", "localhost:6379"),
-		Password: getEnv("REDIS_PASSWORD", ""),
+		Addr:     redisUrl,
+		Password: redisPwd,
 		DB:       0,
 	})
 
