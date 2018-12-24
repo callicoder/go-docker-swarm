@@ -1,0 +1,38 @@
+version: '3'
+
+# Define services
+services:
+  # App Service
+  app:
+    # Configuration for building the docker image for the service
+    image: callicoder/swarm-demo-app:1.0.0
+    ports:
+      - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 50M
+      restart_policy:
+        condition: on-failure  
+    environment: # Pass environment variables to the service
+      REDIS_URL: redis:6379    
+    depends_on:
+     - redis
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
+
+  # Redis Service   
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379"
+    networks:
+      - backend
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+networks:
+  backend:    
