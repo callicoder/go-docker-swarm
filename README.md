@@ -1,10 +1,10 @@
 ## go-docker-swarm
 
-+ Docker: Create a single container
-+ Docker Compose: Manager and Orchestrate multiple containers on a single host
-+ Docker Machine: Create and manage VMs running docker daemon
-+ Docker Swarm: A Cluster of docker nodes.
-+ Docker Stack: Deploy, Manage, and Orchestrate multiple containers on a swarm cluster
++ **Docker**: Create a single container
++ **Docker Compose**: Manager and Orchestrate multiple containers on a single host
++ **Docker Machine**: Create and manage VMs running docker daemon
++ **Docker Swarm**: A Cluster of docker nodes.
++ **Docker Stack**: Deploy, Manage, and Orchestrate multiple containers on a swarm cluster
 
 ### Create VMs using docker-machine
 
