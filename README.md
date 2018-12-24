@@ -42,6 +42,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 ```bash
 $ docker-machine ssh swarm-vm2 "docker swarm join --token SWMTKN-1-073v8uw449vvkwngz6g0mtgivv50dbbqzt2o9f9jmwvwrkihoj-6glz90svgl4t21z1nnio0oce2 192.168.99.100:2377"
 This node joined a swarm as a worker.
+
 $ docker-machine ssh swarm-vm3 "docker swarm join --token SWMTKN-1-073v8uw449vvkwngz6g0mtgivv50dbbqzt2o9f9jmwvwrkihoj-6glz90svgl4t21z1nnio0oce2 192.168.99.100:2377"
 This node joined a swarm as a worker.
 ```
@@ -76,7 +77,6 @@ $ eval $(docker-machine env swarm-vm1)
 
 ```bash
 $ docker-machine ls
-
 NAME        ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER     ERRORS
 swarm-vm1   *        virtualbox   Running   tcp://192.168.99.100:2376           v18.09.0   
 swarm-vm2   -        virtualbox   Running   tcp://192.168.99.101:2376           v18.09.0   
