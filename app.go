@@ -50,7 +50,7 @@ func main() {
 	redisUrl := getEnv("REDIS_URL", "localhost:6379")
 	redisPwd := getEnv("REDIS_PASSWORD", "")
 
-	log.Printf("Connecting to Redis Url %s\n", redisUrl)
+	log.Printf("Connecting to Redis Url '%s'\n", redisUrl)
 
 	client := redis.NewClient(&redis.Options{
 		Addr:     redisUrl,
