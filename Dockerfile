@@ -1,34 +1,26 @@
 # Dockerfile References: https://docs.docker.com/engine/reference/builder/
 
-# Start from golang v1.11 base image
-FROM golang:1.11 as builder
+# Start from golang:1.11-alpine base image
+FROM golang:1.11-alpine
 
 # Add Maintainer Info
 LABEL maintainer="Rajeev Singh <rajeevhub@gmail.com>"
 
 # Set the Current Working Directory inside the container
-WORKDIR /go/src/github.com/callicoder/go-docker-swarm
+WORKDIR $GOPATH/src/github.com/callicoder/go-docker-swarm
 
 # Copy everything from the current directory to the PWD(Present Working Directory) inside the container
 COPY . .
 
-# Download dependencies
+# Download all the dependencies
+# https://stackoverflow.com/questions/28031603/what-do-three-dots-mean-in-go-command-line-invocations
 RUN go get -d -v ./...
 
-# Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/go-docker-swarm .
+# Install the package
+RUN go install -v ./...
 
-
-######## Start a new stage from scratch #######
-FROM alpine:latest  
-
-RUN apk --no-cache add ca-certificates
-
-WORKDIR /root/
-
-# Copy the Pre-built binary file from the previous stage
-COPY --from=builder /go/bin/go-docker-swarm .
-
+# This container exposes port 8080 to the outside world
 EXPOSE 8080
 
-CMD ["./go-docker-swarm"] 
+# Run the executable
+CMD ["go-docker-swarm"]
