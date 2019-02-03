@@ -15,6 +15,7 @@ $ docker-compose up
 ```bash
 $ curl http://localhost:8080/
 3f741654cee0: Welcome! Please hit the `/qod` API to get the quote of the day.
+
 $ curl http://localhost:8080/qod
 3f741654cee0: If I work as hard as I can, I wonder how much I can do in a day?
 ```
